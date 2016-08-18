@@ -1,0 +1,153 @@
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-thin.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-thin.otf')         format('opentype'),
+	     url('antenna-thin.woff')        format('woff'),
+	     url('antenna-thin.ttf')         format('truetype'),
+	     url('antenna-thin.svg#antenna') format('svg');
+	font-weight: 100;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-thin-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-thin-italic.otf')         format('opentype'),
+	     url('antenna-thin-italic.woff')        format('woff'),
+	     url('antenna-thin-italic.ttf')         format('truetype'),
+	     url('antenna-thin-italic.svg#antenna') format('svg');
+	font-weight: 100;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-extra-light.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-extra-light.otf')         format('opentype'),
+	     url('antenna-extra-light.woff')        format('woff'),
+	     url('antenna-extra-light.ttf')         format('truetype'),
+	     url('antenna-extra-light.svg#antenna') format('svg');
+	font-weight: 200;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-extra-light-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-extra-light-italic.otf')         format('opentype'),
+	     url('antenna-extra-light-italic.woff')        format('woff'),
+	     url('antenna-extra-light-italic.ttf')         format('truetype'),
+	     url('antenna-extra-light-italic.svg#antenna') format('svg');
+	font-weight: 200;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-light.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-light.otf')         format('opentype'),
+	     url('antenna-light.woff')        format('woff'),
+	     url('antenna-light.ttf')         format('truetype'),
+	     url('antenna-light.svg#antenna') format('svg');
+	font-weight: 300;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-light-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-light-italic.otf')         format('opentype'),
+	     url('antenna-light-italic.woff')        format('woff'),
+	     url('antenna-light-italic.ttf')         format('truetype'),
+	     url('antenna-light-italic.svg#antenna') format('svg');
+	font-weight: 300;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-regular.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-regular.otf')         format('opentype'),
+	     url('antenna-regular.woff')        format('woff'),
+	     url('antenna-regular.ttf')         format('truetype'),
+	     url('antenna-regular.svg#antenna') format('svg');
+	font-weight: 400;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-regular-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-regular-italic.otf')         format('opentype'),
+	     url('antenna-regular-italic.woff')        format('woff'),
+	     url('antenna-regular-italic.ttf')         format('truetype'),
+	     url('antenna-regular-italic.svg#antenna') format('svg');
+	font-weight: 400;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-medium.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-medium.otf')         format('opentype'),
+	     url('antenna-medium.woff')        format('woff'),
+	     url('antenna-medium.ttf')         format('truetype'),
+	     url('antenna-medium.svg#antenna') format('svg');
+	font-weight: 500;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-medium-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-medium-italic.otf')         format('opentype'),
+	     url('antenna-medium-italic.woff')        format('woff'),
+	     url('antenna-medium-italic.ttf')         format('truetype'),
+	     url('antenna-medium-italic.svg#antenna') format('svg');
+	font-weight: 500;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-bold.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-bold.otf')         format('opentype'),
+	     url('antenna-bold.woff')        format('woff'),
+	     url('antenna-bold.ttf')         format('truetype'),
+	     url('antenna-bold.svg#antenna') format('svg');
+	font-weight: 700;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-bold-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-bold-italic.otf')         format('opentype'),
+	     url('antenna-bold-italic.woff')        format('woff'),
+	     url('antenna-bold-italic.ttf')         format('truetype'),
+	     url('antenna-bold-italic.svg#antenna') format('svg');
+	font-weight: 700;
+	font-style:  italic;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-black.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-black.otf')         format('opentype'),
+	     url('antenna-black.woff')        format('woff'),
+	     url('antenna-black.ttf')         format('truetype'),
+	     url('antenna-black.svg#antenna') format('svg');
+	font-weight: 900;
+	font-style:  normal;
+}
+
+@font-face {
+	font-family: 'Antenna';
+	src: url('antenna-black-italic.eot?#iefix')  format('embedded-opentype'),
+	     url('antenna-black-italic.otf')         format('opentype'),
+	     url('antenna-black-italic.woff')        format('woff'),
+	     url('antenna-black-italic.ttf')         format('truetype'),
+	     url('antenna-black-italic.svg#antenna') format('svg');
+	font-weight: 900;
+	font-style:  italic;
+}

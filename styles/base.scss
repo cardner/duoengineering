@@ -1,0 +1,491 @@
+//Import duo trusted path style sheets
+@import "duo.scss";
+
+// 1 Global Variables
+
+// 1.2 Colors
+$gray: (
+  bkg: #f7f7f7,
+  light: #efefef,
+  mid: #888888,
+  dark: #444444
+);
+
+$duoBlue: (
+  duo: #405665,
+  light: #2798D4
+);
+
+$message: (
+  alertRed: #D4423B,
+  warnOrange: #df6a27
+);
+.white {
+  color: #fff;
+  .logo-path {
+      @include transition(opacity);
+      fill: white;
+  }
+
+  .logo-path-translucent {
+      opacity: 0.8;
+  }
+
+  &:hover .logo-path-translucent {
+      opacity: 1;
+  }
+}
+
+$newColors: (
+  blue: #2798d4,
+  dark-blue: #1c6e99,
+  navy: #363f44,
+  yellow: #e7c528,
+  red: #d4423b,
+  green: #6bbf4e,
+  dark-green: #478034,
+  orange: #df6a27
+);
+@each $colorName, $colorVal in $newColors {
+  .new-#{$colorName} {
+    color: $colorVal;
+  }
+}
+
+// 1.3 Padding & Margin
+$outside-padding: 35px 30px;
+$gutter: 20px;
+$base-container-pad: 0px 10vw 0 22vw;
+
+// 1.4 Borders
+$border-radius : 3px;
+
+@mixin border($color, $width) {
+  border-width: $width;
+  border-color: $color;
+  border-style: solid;
+  border-radius: $border-radius;
+}
+
+// Mixin - find a home for this later
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+// 2 Global Element styles
+body {
+  background: map-get($gray, bkg);
+  color: map-get($gray, dark);
+  font-family: $base-font-family;
+}
+h1 {
+
+}
+
+a[target="_blank"] {
+  i.icon-new-window {
+      display: inline-block;
+      text-decoration: none;
+      padding-left: 6px;
+      font-size: 75%;
+    }
+  }
+
+// 2.1 Atom
+.bold {
+  font-weight: 500;
+}
+
+// 3 Layout & Grid for pattern libray
+
+// 3.1 layout components
+.l-component-cluster {
+  background: white;
+  padding: $outside-padding;
+  border-radius: $border-radius;
+  > h1 {
+    width: 100%;
+  }
+}
+.l-pad--base-container {
+  padding: $base-container-pad;
+}
+.l-marg--pattern-header {
+  margin: 40px 0;
+}
+.l-marg-right-50 {
+  @media (min-width: 64rem) {
+    margin-left: calc(50% + 1rem);
+  }
+}
+// this defaults to the 2rem gutter
+.l-marg-btm {
+  @media (min-width: 64rem) {
+    margin-bottom: $gutter;
+  }
+}
+.l-pad-l-50 {
+  @media (min-width: 64rem) {
+    padding-left: calc(50% + 1rem);
+  }
+}
+
+
+// breakpoints map
+$breakpoints: (
+  m: 30rem,
+  d: 64rem,
+  lg: 94rem,
+);
+
+// media query mixin
+@mixin break($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// number of columns variable
+$items: 6;
+
+// grid container
+.l-grid {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 1rem;
+}
+
+.l-stretch {
+  align-items: stretch;
+}
+
+// loop over the breakpoints
+@each $key, $value in $breakpoints {
+  @for $i from 1 through $items {
+    .l-#{$key}-col-#{$i} {
+      // flex: 0 0 100%;
+      @include break($key) {
+        max-width: calc(( #{ 100% * $i / $items}) - (1rem * (1 - #{$i / $items})));
+        flex: 1 1 calc(( #{ 100% * $i / $items}) - (1rem * (1 - #{$i / $items})));
+        margin-right: calc(1rem * (1 - #{$i / $items}));
+      }
+      &:last-of-type {
+          margin-right: 0;
+      }
+    }
+  }
+}
+
+// 4 Organisms
+
+// 4.1 modals
+[class*="c-modal--"] {
+  border-radius: $border-radius;
+  padding: 1rem;
+  margin: 0;
+}
+.c-modal--info {
+  background-color: $info-blue;
+  p {
+    color: white;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $duo-blue-dark;
+  }
+}
+
+// 5 Components
+// 5.1 toggle nav
+.c-example-code {
+  position: relative;
+  border-radius: 3px;
+  border: 2px solid map-get($gray, light);
+  max-height: 900px;
+  overflow-y: auto;
+  -webkit-transition: max-height ease 0.8s;
+	-moz-transition:  max-height ease 0.8s;
+	transition: max-height ease 0.8s;
+  @media (max-width: 63.99rem) {
+    margin-top: 2vw;
+  }
+  table.codehilite {
+    // position: absolute;
+    background-color: white;
+    width: 99%; //this looks weird but it fixes compound scroll bars
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+  &:focus {
+    max-height: 2000vh;
+    overflow: auto;
+    outline: none;
+  }
+}
+[class*=".nav--"] {
+  margin-left: 0;
+
+  li {
+    list-style: none;
+
+  }
+}
+.nav--snippet-toggle {
+  border-bottom: 2px solid map-get($gray, light);
+  padding: 0 0 0 1vw;
+  margin: 0;
+  li {
+    display: inline-block;
+    margin: 0;
+
+    &.active, &.current {
+      border-top: 6px solid $duo-green;
+    }
+    a {
+      display: block;
+      color: currentColor;
+      text-decoration: none;
+      padding: 17.5px 9px;
+      &:active, &:focus {
+        outline:none;
+      }
+    }
+  }
+}
+
+.c-color-chip {
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin: 40px 0 20px;
+  padding: 16px;
+  list-style: none;
+  dt, dd {
+    margin: 0;
+    line-height: 1.8em;
+  }
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    font-weight: 100;
+  }
+  &.duo-green {
+    background: $duo-green;
+  }
+  &.duo-blue {
+    background: $duo-blue;
+  }
+  &.duo-blue-light {
+    background: $duo-blue-light;
+  }
+  &.gray-dark {
+    background: map-get($gray, dark);
+  }
+  &.gray {
+    background: map-get($gray, mid);
+  }
+  &.gray-light {
+    background: map-get($gray, light);
+    color: map-get($gray, dark);
+  }
+  &.red-alert {
+    background: $error-red;
+  }
+  &.orange-warning {
+    background: $warning-orange;
+  }
+}
+
+////////////////////////////CSS to make patterns work below here////
+
+// 6 Admin stuff I've had to grab
+
+.centering-container {
+  width: 100vw;
+  height: 100vh;
+}
+// .base-container
+//   > .base-sidebar
+//   | > .base-header
+//   | > .navigation
+//   | | > .subnav
+//   | > .help-links
+//   > .base-main
+//   | > .base-actions
+//   | > .base-content
+$base-sidebar-width: 200px;
+
+.base-container {
+    background: $duo-green;
+    margin: 0 auto;
+    min-height: 89.5vh;
+    // min-width: 1024px;
+    // max-width: 1400px;
+    position: relative;
+    overflow: overlay;
+
+    @include low-res {
+        background: $grey-lighter-low-res;
+    }
+}
+
+
+.base-header {
+  padding: 0 10vw;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+    a {
+        display: inline-block;
+        padding: 20px 0;
+        width: 10vw;
+        svg {
+          padding-left: 0.3em;
+        }
+    }
+
+    h1 {
+        display: inline-block;
+        width:auto;
+        color: map-get($gray, mid);
+        font-size: 1.5em;
+        padding: 20px 0;
+        margin: 0 0 0 2vw;
+        vertical-align: middle;
+    }
+
+    .logo {
+        display: block;
+        margin: 0 auto;
+        height: 40px;
+        max-width: 100px;
+    }
+
+    img.logo {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .logo-path {
+        @include transition(opacity);
+        fill: $duo-green;
+    }
+
+    .logo-path-translucent {
+        opacity: 0.8;
+    }
+
+    &:hover .logo-path-translucent {
+        opacity: 1;
+    }
+}
+
+.base-main {
+  &:first-child {
+    margin-top: 4.5vw;
+  }
+  p {
+    font-size: 5vw;
+    line-height: 0.8em;
+    font-family: $heading-font-family;
+    font-weight: bold;
+  }
+  svg {
+    margin-top: 0.5em;
+    padding-left: 0.3em;
+    width:50vw;
+  }
+  h2 {
+    margin-top: 0.3em;
+    font-size: 3.25vw;
+    line-height: 1em;
+    font-weight: bold;
+  }
+
+}
+
+.base-actions {
+    @include clearfix;
+    background: darken($grey-lighter, 4%);
+    padding: 20px 57px;
+    margin: 0 -50px 40px;
+    position: relative;
+    z-index: 100;
+
+    .wonka-bar {
+        float: left;
+    }
+
+    .dropdown {
+        float: right;
+        margin-left: 16px;
+    }
+
+    @include low-res {
+        background: #dadada;
+    }
+}
+
+.base-progress {
+    padding: 16px 48px;
+}
+
+.base-temporary-actions-container {
+    display: none;
+    float: right;
+    font-size: smaller;
+
+    [type="submit"] {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .select2-container {
+        width: 250px;
+    }
+}
+
+.base-content {
+    padding: 20px 48px;
+
+    @include low-res {
+        background: $grey-lighter-low-res;
+    }
+}
+
+.base-footer {
+    padding-bottom: 20px;
+
+    a {
+        text-decoration: none;
+        color: #777;
+
+        &:hover {
+            color: #555;
+        }
+    }
+
+    .inner {
+        margin: 0 auto;
+        text-align: center;
+        color: #aaa;
+    }
+
+    @include low-res {
+        background: $grey-lighter-low-res;
+
+        .inner, a {
+            color: $grey-dark-low-res;
+        }
+    }
+}

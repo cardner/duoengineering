@@ -1,0 +1,36 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+.box {
+  @include box;
+}
+
+.box-header {
+  @include clearfix;
+  border-bottom: 1px solid $grey-light;
+  padding-bottom: 24px;
+  position: relative;
+
+  h3 {
+    margin-bottom: 4px;
+  }
+}
+
+.box-header-group {
+  float: left;
+}
+
+.box-header-info {
+  color: $grey;
+  display: block;
+}
+
+.box-header-buttons {
+  float: right;
+  margin-top: 8px;
+
+  & > * {
+    float: right;
+    margin-left: 16px;
+  }
+}

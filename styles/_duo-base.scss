@@ -1,0 +1,76 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+// because border-box is awesome
+// http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    background-color: $grey-lighter;
+    color: $grey-darker;
+
+    @include low-res {
+        color: black;
+    }
+}
+
+a {
+    @include transition(color);
+    color: $info-blue;
+
+    &:hover {
+        color: darken($info-blue, 15%);
+    }
+
+    &:focus {
+        outline: 2px solid $duo-green;
+    }
+}
+a[target="_blank"] {
+  i.icon-new-window {
+      display: inline-block;
+      text-decoration: none;
+      padding-left: 6px;
+      font-size: 75%;
+    }
+  }
+
+dl {
+    margin-top: 0;
+}
+
+p, li {
+    margin-bottom: 0.875rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.disabled, .disabled-row {
+    &, h1, h2, h3, h4, h5, h6 {
+        color: $disabled-color;
+    }
+
+    a {
+        color: darken($disabled-color, 10%);
+    }
+}
+
+.disabled-row {
+    color: #999;
+
+    a {
+        color: #777;
+    }
+}

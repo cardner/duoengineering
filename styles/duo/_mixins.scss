@@ -1,0 +1,79 @@
+/**
+ * Micro clearfix hack http://nicolasgallagher.com/micro-clearfix-hack/
+ * This clearfix hack can be used on the container element that has floated
+ * elements without adding new markup
+ */
+@mixin clearfix {
+	&:before, &:after {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    .ie & {
+        *zoom: 1;
+    }
+}
+
+@mixin ellipsis ($max-width) {
+  max-width: $max-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/** Vertically center an element in another with this mixin **/
+@mixin vertical-center {
+    transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+}
+
+@mixin keyframes($animation-name) {
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    animation: $str;
+}
+
+@mixin retina {
+  @media screen and (-webkit-min-device-pixel-ratio: 1.5),
+         screen and (min-resolution: 1.5dppx) {
+    @content;
+  }
+}
+
+/**
+ * Source: https://css-tricks.com/snippets/css/retina-display-media-query/
+ */
+@mixin low-res {
+    @media screen and (-webkit-max-device-pixel-ratio: 1.25),
+           screen and (max-resolution: 120dpi) {
+        @content;
+    }
+}
+
+// Transition the given property using consistent duration and timing function.
+@mixin transition($properties...) {
+    transition-property: $properties;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+@mixin box {
+    background-color: white;
+    border-radius: $border-radius;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+    &.disabled {
+        background: transparentize(white, 0.35);
+        color: transparentize($base-color, $disabled-opacity);
+    }
+}

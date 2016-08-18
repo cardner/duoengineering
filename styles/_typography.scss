@@ -1,0 +1,74 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+$h1: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   32px,
+    font-weight: 300,
+    line-height: 44px,
+);
+$h2: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   24px,
+    font-weight: 300,
+    line-height: 32px,
+);
+$h3: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   20px,
+    font-weight: 300,
+    line-height: 28px,
+);
+$h4: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   18px,
+    font-weight: 300,
+    line-height: 26px,
+);
+$h5: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   16px,
+    font-weight: 300,
+    line-height: 22px,
+);
+$h6: (
+    color:       $heading-color,
+    font-family: $heading-font-family,
+    font-size:   14px,
+    font-weight: 300,
+    line-height: 20px,
+);
+
+body {
+    color: $base-color;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    font-weight: $base-font-weight;
+    line-height: $base-line-height;
+}
+
+p {
+    margin-top: 0;
+}
+
+$h-rules: $h1 $h2 $h3 $h4 $h5 $h6;
+
+@each $h in $h-rules {
+    h#{index($h-rules, $h)}, .h#{index($h-rules, $h)} {
+        color: map_get($h, color);
+        font-family: map_get($h, font-family);
+        font-size: map_get($h, font-size);
+        font-weight: map_get($h, font-weight);
+        line-height: map_get($h, line-height);
+        margin: 0 0 (0.5 * map_get($h, line-height));
+
+        @include low-res {
+            color: black;
+        }
+    }
+}

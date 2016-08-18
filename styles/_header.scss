@@ -1,0 +1,42 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+.header, .subhead {
+    @include clearfix;
+
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+
+    > * {
+        margin-bottom: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, li {
+        margin-bottom: 0;
+    }
+
+    > :first-child {
+        float: left;
+    }
+
+    > :last-child {
+        float: right;
+    }
+
+    form {
+        display: inline-block;
+    }
+
+    .flexbox & {
+        display: flex;
+        align-items: center;
+
+        > :first-child {
+            flex: 1;
+        }
+    }
+}
+
+.subhead {
+    margin-bottom: 1rem;
+}

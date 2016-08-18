@@ -1,0 +1,124 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+@mixin message($color, $color-light) {
+    background-color: $color-light;
+    border-radius: $border-radius;
+    color: $color;
+    padding: 1rem;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    a {
+        color: darken($color, 10%);
+
+        &:hover { color: darken($color, 20%); }
+    }
+}
+
+.flash {
+    .info, .message {
+        @include message($grey-dark, $info-blue-light);
+    }
+
+    .error {
+        @include message($grey-dark, $error-red-lightest);
+    }
+
+    .success {
+        @include message($grey-dark, $success-green-lightest);
+    }
+
+    .warning {
+        @include message($grey-dark, $warning-orange-light);
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.page-message {
+    @include clearfix;
+    @include message($grey-dark, $info-blue-light);
+
+    img {
+        float: right;
+    }
+
+    ul, ol {
+        margin: 4px 30px 10px 20px;
+    }
+
+    li {
+        list-style-type: disc;
+        list-style-position: inside;
+        line-height: 18px;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    &.info {
+        border: 1px solid $info-blue-border;
+        > * {
+            margin-left: 48px;
+        }
+
+        &:before {
+            content: "\e0d0";
+            font-family: $icon-font-family;
+            font-size: 32px;
+            position: absolute;
+            display: block;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 16px;
+        }
+
+        .info-box-title {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+    }
+
+    &.secure {
+        &:before {
+            content: "\e01a";
+        }
+    }
+
+    &.limit {
+        margin-bottom: 2.5em;
+    }
+
+    &.no-top-margin {
+        margin-top: 0px;
+    }
+
+    &.success {
+        @include message($grey-dark, $success-green-light);
+
+        &.limit {
+            padding: 15px 20px 15px 20px;
+        }
+    }
+
+    &.error {
+        @include message($grey-dark, $error-red-lightest);
+    }
+}
+
+.page-message-labs {
+    .labs-icon {
+        vertical-align: inherit;
+    }
+
+    p {
+        display: inline-block;
+        margin-bottom: 0 !important;
+        width: 95%;
+    }
+}

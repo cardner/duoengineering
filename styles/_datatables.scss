@@ -1,0 +1,458 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+// Header and buttons before data tables
+.before-data-table {
+  @include clearfix;
+
+  position: relative;
+  margin-bottom: 5px;
+
+  .table-actions {
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+    text-align: right;
+    width: 300px;
+
+    .do-button {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
+
+.empty_table {
+  color: $grey;
+  background-color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.has-helptext {
+  border-bottom: 1px dotted #999;
+}
+
+.dataTables_wrapper {
+  form {
+    margin-bottom: 0;
+  }
+
+  table {
+    width: 100% !important;
+  }
+
+  tr {
+    height: auto;
+    vertical-align: middle;
+  }
+
+  thead {
+    background-color: #fff;
+    color: $grey;
+    font-size: 12px;
+
+    @include low-res {
+      color: $grey-dark-low-res;
+    }
+  }
+
+  thead tr {
+    border-bottom: 1px solid $grey-light;
+    text-align: left;
+  }
+
+  th {
+    font-weight: normal;
+    padding: 10px;
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  td {
+    background-color: white;
+    border-bottom: 1px solid $grey-light;
+    border-top: 1px solid $grey-light;
+    padding: 10px 20px 10px 10px;
+
+    .indented {
+        margin: 0 0 0 24px;
+    }
+
+    a:not(.button) {
+        color: $info-blue;
+    }
+  }
+
+  @mixin sort-arrow($icon) {
+    content: $icon;
+    font-family: 'Duo Admin Icons';
+    margin-left: 8px;
+    position: absolute;
+  }
+
+  .sorting, .sorting_desc, .sorting_asc {
+    cursor: pointer;
+    outline: none;
+
+    &.checkbox:after {
+      display: none;
+    }
+  }
+
+  .sorting:after {
+    @include sort-arrow('\e04b');
+    font-size: 13px;
+  }
+
+  .sorting_desc:after {
+    @include sort-arrow('\e014');
+    font-size: 10px;
+  }
+
+  .sorting_asc:after {
+    @include sort-arrow('\e012');
+    font-size: 10px;
+  }
+
+  // Wrapper for controls (pagination, counts, search, etc.)
+  @mixin  control-wrapper {
+    background-color: #fff;
+    color: $grey;
+    padding: 24px 16px;
+    position:relative;
+
+    @include low-res {
+      color: $grey-dark-low-res;
+    }
+  }
+
+  .top-control-wrapper {
+    @include control-wrapper;
+    @include clearfix;
+
+    border-bottom: 1px solid $grey-light;
+
+    .button-row {
+      float: right;
+      margin: -10px;
+
+      > div:only-child.download-buttons {
+        margin: 0;
+      }
+    }
+    .download-buttons {
+      a {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .bottom-control-wrapper {
+    @include control-wrapper;
+    padding-top: 20px;
+
+    > div {
+      @include vertical-center;
+    }
+
+    select {
+      padding: 0;
+    }
+
+    td {
+      border-bottom: none;
+    }
+  }
+
+  .loading {
+    @include animation(spin .8s linear infinite);
+    @include keyframes("spin") {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    background-image: url('../images/loading.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: none;
+    float: left;
+    height: 30px;
+    margin: -8px 16px 0 0;
+    width: 30px;
+    vertical-align: middle;
+  }
+
+  .checkbox {
+    padding: 0;
+    width: 12px;
+    text-align: center;
+
+    > input[disabled] {
+      opacity: 0.7;
+    }
+
+    > label {
+        display: block;
+        padding: 16px;
+    }
+  }
+
+  th.checkbox > label {
+    padding: 8px 16px;
+  }
+
+  // Self clearing
+  // http://datatables.net/blog/Creating_beautiful_and_functional_tables_with_DataTables
+  &:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+  }
+
+  .moveable-row {
+    cursor: move;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+.footer-controls {
+    line-height: 3rem;
+    padding: 10px !important;
+}
+
+// Empty tables
+.dataTables_empty {
+  background-color: white;
+  padding: 20px 0 !important;
+  text-align: center;
+  vertical-align: top;
+}
+
+// Show <10> users
+.dataTables_length {
+  float: left;
+  font-weight: normal;
+
+  select {
+    width: auto;
+  }
+}
+
+// Filter
+.dataTables_filter {
+  margin-right: 38px;
+  width: 250px;
+
+  input {
+    @include transition(color, border-color, box-shadow);
+
+    width: 100%;
+    padding: 6px 6px 6px 24px;
+    color: #333;
+    line-height: 24px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: white url('../images/magnifying-glass.png') 3px center no-repeat;
+
+    &:focus {
+      color: $grey-darker;
+      border-color: $duo-green;
+      box-shadow: 0 0 5px 0 transparentize($duo-green, 0.5);
+    }
+
+    @include low-res {
+      border-color: $base-border-color-low-res;
+    }
+  }
+}
+
+// Showing 1-10 of 20 ...
+.dataTables_info {
+  float: left;
+  font-weight: normal;
+  margin: 0 0 0 30px;
+  color: $grey;
+}
+
+
+// Download buttons
+.dataTables_download_buttons {
+  float: right;
+  text-align: right;
+  width: 175px;
+  margin: 4px 8px 7px 10px;
+
+  a {
+    margin-top: 3px;
+    margin-left: 10px;
+  }
+}
+
+// Loading spinner
+.dataTables_loading {
+    display: none;
+    float: left;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+// Pagination
+.dataTables_paginate {
+  float: right;
+
+  a {
+    text-decoration: none;
+  }
+
+  .paginate_button, .paginate_active {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    line-height: 20px;
+    margin: 3px;
+    padding: 6px;
+    text-align: center;
+    width: 30px;
+  }
+
+  .paginate_button {
+    @include transition(color, background-color);
+    color: $info-blue;
+    &.current {
+      background-color: $duo-green;
+      color: white;
+
+      &:hover {
+        background-color: $duo-green-dark;
+        color: white;
+      }
+    }
+
+    &:hover {
+      color: $duo-green-darkest;
+    }
+
+    &.disabled, &.disabled:hover {
+      cursor: default;
+      color: #DEE0E7;
+      border-color: #CFD3E0;
+
+      @include low-res {
+        color: $grey-dark-low-res;
+      }
+    }
+  }
+
+  .first, .next, .previous, .last {
+    font-size: 10px;
+    color: $info-blue;
+  }
+
+  .first, .last {
+    letter-spacing: -3px;
+    display: none;
+  }
+}
+
+.selected-count {
+  display: inline-block;
+  line-height: 18px;
+}
+
+// Custom formatted cells
+.result-cell {
+  white-space: nowrap;
+  text-transform: capitalize;
+
+  &:before {
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+    vertical-align: -3px;
+    margin-right: 4px;
+    line-height: 12px;
+    content: ' ';
+    display: inline-block;
+  }
+
+  $types:
+    (success, #63C76A),
+    (failure, #EF6000),
+    (fraud, #9D3F00),
+    (error, #9B9B9B);
+
+  @each $x in $types {
+    $type: nth($x, 1);
+    $color: nth($x, 2);
+
+    &.result-#{$type} {
+      color: $color;
+
+      &:before {
+        background-image: url("/static/images/markers/#{$type}.png");
+
+        @include retina {
+          background-image: url("/static/images/markers/#{$type}@2x.png");
+        }
+      }
+    }
+  }
+}
+
+.table-wrapper + .table-wrapper {
+    margin-top: 1rem;
+}
+
+.validation {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.validation:before {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Device secure, show a grey check mark using ss-standard font */
+.validation.valid:before {
+    content: '✓';
+    color: $grey-light;
+}
+
+.simple_table tr:last-child td{
+    border-bottom: none;
+}
+
+.icon-column {
+    vertical-align: top;
+    display: inline-block;
+    height: 100%;
+}
+
+.os-text-column {
+    display: inline-block;
+    width: calc(100% - 25px);
+}
+
+.browser-text-column {
+    display: inline-block;
+    width: calc(100% - 20px);
+}
+
+.warning-text-column {
+    display: inline-block;
+    width: calc(100% - 25px);
+}

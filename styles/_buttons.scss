@@ -1,0 +1,217 @@
+@import "duo/variables";
+@import "duo/mixins";
+
+@mixin button-style($background-color, $color: white) {
+    background-color: $background-color;
+    border-color: $background-color;
+    color: $color;
+    outline: 0;
+
+    span {
+        color: $color;
+    }
+
+    &:hover {
+        background-color: darken($background-color, 10%);
+        border-color: darken($background-color, 10%);
+        color: $color;
+    }
+
+    &:active {
+        background-color: darken($background-color, 15%);
+        border-color: darken($background-color, 15%);
+        transition-duration: 0s;
+    }
+
+    &:focus {
+        background-color: darken($background-color, 10%);
+        outline: 2px solid $background-color; 
+        outline-offset: 3px;
+    }
+
+    &:disabled, &.disabled {
+        cursor: not-allowed;
+
+        &, &:hover {
+            background-color: transparentize($background-color, $disabled-opacity);
+            border-color: transparentize($background-color, $disabled-opacity);
+            color: transparentize(white, $disabled-opacity);
+        }
+    }
+
+    &.ghost {
+        background-color: transparent;
+        border-color: $background-color;
+        color: $background-color;
+
+        &:hover {
+            background-color: transparent;
+            color: darken($background-color, 20%);
+        }
+
+        &:active {
+            color: darken($background-color, 30%);
+        }
+
+        &:focus {
+            outline: 2px solid white;
+            color: darken($background-color, 20%);
+        }
+
+        &.disabled, &:disabled {
+            &, &:hover {
+                background-color: transparent;
+                border-color: transparentize($grey, $disabled-opacity);
+                color: transparentize($grey, $disabled-opacity);
+            }
+        }
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+}
+
+@mixin button {
+    @include transition(background-color, border-color, box-shadow);
+
+    border: none;
+    border-radius: $border-radius;
+    box-shadow: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: $base-font-size;
+    font-weight: normal;
+    line-height: 1em;
+    padding: 12px 16px;
+    text-decoration: none;
+
+    i {
+        font-size: $base-font-size - 3px;  // duo-admin has taller line-height
+        line-height: 0;
+        margin-right: 4px;
+
+        // Download icon feels a little cramped next to text
+        &.icon-download {
+          margin-right: 8px;
+        }
+    }
+
+    &.ghost {
+        border: solid 2px transparent;
+        background-color: transparent;
+    }
+
+    &.tiny {
+        font-size: $base-font-size * 0.8;
+        padding: 6px 8px;
+
+        i {
+            vertical-align: middle;
+            margin-right: 0;
+        }
+    }
+
+    &.huge {
+        font-size: $base-font-size * 1.25;
+        padding: 16px 20px;
+    }
+
+    &.square {
+        text-align: center;
+        padding-left: 4px;
+        padding-right: 4px;
+
+        i {
+            display: block;
+            font-size: 2rem;
+            height: 2rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &.block {
+        display: block;
+        width: 100%;
+    }
+}
+
+button, .button, input[type="submit"]:not(.link), input[type="reset"], input[type="button"] {
+    @include button;
+    @include button-style($grey);
+
+    &.primary {
+        @include button-style($info-blue);
+    }
+
+    &.secondary {
+        @include button-style($grey-light, $info-blue);
+    }
+
+    &.positive {
+        @include button-style($duo-green);
+    }
+
+    &.danger {
+        @include button-style($error-red);
+    }
+
+    &.warning {
+        @include button-style($white);
+    }
+}
+
+button.link {
+    @include transition(color);
+
+    background-color: transparent;
+    color: $info-blue;
+
+    &:hover {
+        background-color: transparent;
+        color: lighten($info-blue, 20%);
+    }
+    &:focus {
+        background-color: transparent;
+    }
+}
+
+.button-row {
+    @include clearfix;
+
+    > * {
+        float: left;
+        margin-right: 16px;
+    }
+
+    &.reverse > * {
+        float: right;
+        margin-left: 16px;
+        margin-right: 0;
+    }
+
+    &.centered {
+        text-align: center;
+    }
+
+    [type="text"] {
+        width: 200px;
+    }
+
+    .flexbox & {
+        display: flex;
+        align-items: baseline;
+
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+
+        &.centered {
+            justify-content: center;
+
+            > :last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
