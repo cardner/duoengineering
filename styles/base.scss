@@ -333,10 +333,6 @@ $base-sidebar-width: 200px;
     // max-width: 1400px;
     position: relative;
     overflow: overlay;
-
-    @include low-res {
-        background: $grey-lighter-low-res;
-    }
 }
 
 
